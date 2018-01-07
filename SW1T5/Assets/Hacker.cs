@@ -6,11 +6,11 @@ using UnityEngine;
 public class Hacker : MonoBehaviour {
     int level;
     enum Screen { MainMenu, Password, Win };
-    string[] level1password = { "one", "uno", "isa" };
-    string[] level2password = { "two", "dos", "dalawa" };
-    string[] level3password = {"three", "tres", "tatlo"};
+    string[] level1password = { "ping pong", "pingpong", "table tennis" };
+    string[] level2password = { "albus", "dumbledore", "albusdumbledore", "Albus Percival Wulfric Brian Dumbledore" };
+    string[] level3password = {"angelonicholsuinan", "suinanangelo", "angelosuinan","angelo","suinan"};
     Screen currentScreen = Screen.MainMenu;
-
+    String password;
 	// Use this for initialization
 	void Start () {
         ShowMainMenu();
@@ -20,15 +20,25 @@ public class Hacker : MonoBehaviour {
     void ShowMainMenu() {
         currentScreen = Screen.MainMenu;
         Terminal.WriteLine("SW2T5");
-        Terminal.WriteLine("What would you like to hack into?");
-        Terminal.WriteLine("Press 1 for the local library");
-        Terminal.WriteLine("Press 2 for the police station");
-        Terminal.WriteLine("Press 3 for the NASA system");
+        Terminal.WriteLine("Guess the Password");
+        Terminal.WriteLine("Press 1 for easy");
+        Terminal.WriteLine("Press 2 for average");
+        Terminal.WriteLine("Press 3 for HARD");
         Terminal.WriteLine("Enter Your Selection");
     }
 	void OnUserInput (string input) {
-        if (input == "007")
-            Terminal.WriteLine("Hello Mr. James Bond");
+        if (input == "I'm 18")
+            Terminal.WriteLine(@"
+        @@@
+       @. .@
+       @\=/@
+       .- -.
+      /(.|.)\
+      \ ).( /
+      '( v )`
+        \|/  
+        (|)
+        '-`");
         else if (input == "menu") {
             ShowMainMenu();
         }
@@ -45,8 +55,19 @@ public class Hacker : MonoBehaviour {
 
     private void CheckPassword(string input)
     {
-        
-        throw new NotImplementedException();
+
+        if (input == password)
+        {
+            DisplayWinScreen();
+        }
+        else if (input == "exit")
+        {
+            ShowMainMenu();
+        }
+        else
+        {
+            StartGame();
+        }
     }
 
     void RunMainMenu(string input)
@@ -54,28 +75,97 @@ public class Hacker : MonoBehaviour {
         if (input == "1")
         {
             level = 1;
-            StartGame(level);
+            GeneratePassword();
+            StartGame();
         }
         else if (input == "2")
         {
             level = 2;
-            StartGame(level);
+            GeneratePassword();
+            StartGame();
         }
         else if (input == "3")
         {
             level = 3;
-            StartGame(level);
+            GeneratePassword();
+            StartGame();
         }
         else
             Terminal.WriteLine("Please choose a valid level");
     }
+    void GeneratePassword()
+    {
 
-    void StartGame(int level)
+        switch (level)
+        {
+            case 1:
+                password= level1password[UnityEngine.Random.Range(0, level1password.Length)];
+                break;
+            case 2:
+                password = level2password[UnityEngine.Random.Range(0, level2password.Length)];
+                break;
+            case 3:
+                password = level3password[UnityEngine.Random.Range(0, level3password.Length)];
+                break;
+        }
+
+    }
+    void StartGame()
     {
         currentScreen = Screen.Password;
         Terminal.ClearScreen();
-        Terminal.WriteLine("Level " + level);
-        Terminal.WriteLine("Please Enter password");
 
+        if (level == 3)
+        {
+            Terminal.WriteLine("Level " + level);
+            Terminal.WriteLine("Describe the abstract");
+            Terminal.WriteLine(@"
+                           O--,---,--O
+   ._O_.     O--=-O-=--O     \ O /
+O--<-+->--O      '-'          - -
+     X            v            -
+    / \          / )          / \
+                            ");
+        }
+        else if (level == 1)
+        {
+            Terminal.WriteLine("Level " + level);
+            Terminal.WriteLine("Describe the picture");
+            Terminal.WriteLine(@"
+                    o
+     _ 0  .-----\-----.  ,_0 _
+   o' / \ |\     \     \    \ `o
+   __|\___|_`-----\-----`__ /|____
+     / |     |          |  | \
+             |          |
+                            ");
+        }
+        else if (level == 2)
+        {
+            Terminal.WriteLine("Level " + level);
+            Terminal.WriteLine("Describe the picture");
+            Terminal.WriteLine(@"
+___ __ ._`.*.|_._ ____ ____
+ . +  * .o   |.* `.`. +.    .
+*  . ' ' |\^/|  `. * .  * `
+          \V/ . +
+          /_\  .`.
+======== _/ \_ =====::.*
+                            ");
+        }
+    }
+    void DisplayWinScreen()
+    {
+        currentScreen = Screen.Win;
+        Terminal.WriteLine("YOU WIN! here's a cake for you!");
+        Terminal.WriteLine(@"
+                     )  (  )  (
+                    (^)(^)(^)(^)
+                    _i__i__i__i_
+                   (____________)
+                   |####|>o<|###| hjw
+                   (____________)
+
+                            ");
     }
 }
