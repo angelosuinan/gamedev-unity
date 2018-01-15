@@ -23,6 +23,7 @@ public class r0cket : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
+            Debug.Log("tesrt");
             rigidbody.AddRelativeForce(Vector3.up);
         }
         else if (Input.GetKey(KeyCode.A))
