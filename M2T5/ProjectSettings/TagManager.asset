@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collision
   - TargetPad
+  - LaunchPad
   layers:
   - Default
   - TransparentFX

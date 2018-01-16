@@ -19,10 +19,16 @@ public class CollisionScript : MonoBehaviour {
         if (collision.gameObject.tag == "TargetPad")
         {
             Debug.Log("tarrget reach");
+            collision.gameObject.GetComponent<Renderer>().material.color = Color.green;
+        }
+        else if (collision.gameObject.tag == "LaunchPad")
+        {
+            Debug.Log("Safe");
         }
         else
         {
             Debug.Log("Colllistions");
+            Application.LoadLevel(Application.loadedLevel);
         }
     }
 }
