@@ -7,6 +7,10 @@ TagManager:
   - Collision
   - TargetPad
   - LaunchPad
+  - Ship1
+  - Ship2
+  - TargetPadLevel1
+  - TargetPadLevel2
   layers:
   - Default
   - TransparentFX
